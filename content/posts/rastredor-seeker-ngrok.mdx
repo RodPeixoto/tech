@@ -1,21 +1,46 @@
 ---
-title: Visualizadores de Texto no Linux (cat, more, less, head, tail)
-description: Comandos para visualizar, inspecionar e analisar arquivos de texto no terminal Linux.
-date: "2025-07-02"
+title: Rastreamento em tempo real
+description: Realizei um teste de engenharia social utilizando a ferramenta Seeker combinada com Ngrok, com o objetivo de demonstrar como informações de geolocalização podem ser obtidas de forma silenciosa e com aparência legítima.
+date: 2025-07-02
+---
+
+### Teste de Engenharia Social com Seeker e Ngrok
+
+> ⚠️ Este experimento foi feito de forma ética e controlada. Usar essas técnicas sem consentimento é ilegal e viola princípios de privacidade e segurança.
+
+## ⚙️ Ferramentas utilizadas
+- **Seeker**: Gera uma página falsa que solicita a localização.
+- **Ngrok**: Expõe o servidor local do Seeker na internet por meio de um túnel seguro.
+
+## 🧪 Metodologia
+1. Executei o Seeker localmente para criar uma página que solicita a geolocalização.
+2. Usei o Ngrok para gerar um link público da página (`https://exemplo.ngrok.io`).
+3. Disfarcei o link como se fosse de uma imagem no Google Drive, com miniatura e título sugestivos.
+4. A vítima, ao clicar no link, foi levada à página falsa e permitiu o acesso à sua localização.
+
+## 📍 Resultado
+Com a permissão dada, a ferramenta capturou:
+- **Latitude e Longitude exatas**
+- **Precisão em metros**
+- **Informações do navegador e dispositivo**
+
+## 🔐 Conclusão
+Esse teste mostra como **a engenharia social pode ser mais perigosa do que ataques técnicos**, especialmente quando a vítima confia no link enviado. É fundamental promover a **conscientização digital** para prevenir esse tipo de situação.
+
 ---
 
 ### Instalação
 
-```
+```bash
 git clone https://github.com/thewhiteh4t/seeker.git
 cd seeker/
 chmod +x install.sh
 ./install.sh
-```
+````
 
-### Instalação do  Ngrok
+### Instalação do Ngrok
 
-```
+```bash
 brew install ngrok/ngrok/ngrok
 
 ngrok http 8080
@@ -23,7 +48,7 @@ ngrok http 8080
 
 ### Uso
 
-```
+```bash
 python3 seeker.py -h
 ```
 
@@ -31,31 +56,31 @@ python3 seeker.py -h
 usage: seeker.py [-h] [-k KML] [-p PORT] [-u] [-v] [-t TEMPLATE] [-d] [--telegram token:chatId] [--webhook WEBHOOK]
 ```
 
-opções:
+Opções:
 
 ```
   -h, --help                            mostrar esta mensagem de ajuda e sair
-  -k KML, --kml KML                     nome do arquivo KML
-  -p PORT, --port PORT                  porta do servidor web [ Padrão : 8080 ]
-  -u, --update                          Verificar atualizações
-  -v, --version                         Mostrar versão
-  -t TEMPLATE, --template TEMPLATE      Selecionar automaticamente o modelo com o índice fornecido
-  -d, --debugHTTP                       Desativar redirecionamento automático de http --> https para fins de teste 
-                                        (funciona apenas para modelos com arquivo index_temp.html)
-  --telegram                            Enviar informações para um bot do Telegram, forneça o token e o chat a ser usado
-                                        formato = token:chatId separados por dois pontos
-  --webhook                             Enviar eventos para um endpoint webhook para processamento
-                                        Observação: o endpoint deve ser não autenticado e aceitar requisições POST
+  -k KML, --kml KML                    nome do arquivo KML
+  -p PORT, --port PORT                 porta do servidor web [ Padrão : 8080 ]
+  -u, --update                         Verificar atualizações
+  -v, --version                        Mostrar versão
+  -t TEMPLATE, --template TEMPLATE     Selecionar automaticamente o modelo com o índice fornecido
+  -d, --debugHTTP                     Desativar redirecionamento automático de http --> https para fins de teste 
+                                     (funciona apenas para modelos com arquivo index_temp.html)
+  --telegram                         Enviar informações para um bot do Telegram, forneça o token e o chat a ser usado
+                                     formato = token:chatId separados por dois pontos
+  --webhook                          Enviar eventos para um endpoint webhook para processamento
+                                     Observação: o endpoint deve ser não autenticado e aceitar requisições POST
 ```
 
-### Variáveis de Ambiente 
-
+### Variáveis de Ambiente
 
 Algumas das opções acima também podem ser ativadas via variáveis de ambiente, para facilitar a implantação. Outros parâmetros podem ser fornecidos via variáveis de ambiente para evitar o modo interativo.
 
 Variáveis:
 
-```
+```bash
+
   DEBUG_HTTP            Equivalente a -d, --debugHTTP
   PORT                  Equivalente a -p, --port
   TEMPLATE              Equivalente a -t, --template
@@ -75,58 +100,60 @@ Variáveis:
 
 ```
 
-### Exemplos de Uso #
+### Exemplos de Uso
 
-### Passo 1: No primeiro terminal
+#### Passo 1: No primeiro terminal
 
-```
-$ python3 seeker.py
-```
-
-### Passo 2: No segundo terminal, inicie um serviço de túnel como ngrok
-
-```
-$ ./ngrok http 8080
+```bash
+python3 seeker.py
 ```
 
-### Opções: #
+#### Passo 2: No segundo terminal, inicie um serviço de túnel como ngrok
 
-### Gerar arquivo KML para o Google Earth
-
-```
-$ python3 seeker.py -k <nome_do_arquivo>
+```bash
+./ngrok http 8080
 ```
 
-### Usar Porta Personalizada
+#### Opções
 
-```
-$ python3 seeker.py -p 1337
-$ ./ngrok http 1337
-```
+##### Gerar arquivo KML para o Google Earth
 
-### Pré-selecionar um modelo específico
-
-```
-$ python3 seeker.py -t 1
+```bash
+python3 seeker.py -k <nome_do_arquivo>
 ```
 
-### Túneis locais
+##### Usar Porta Personalizada
 
+```bash
+python3 seeker.py -p 1337
+./ngrok http 1337
 ```
+
+##### Pré-selecionar um modelo específico
+
+```bash
+python3 seeker.py -t 1
+```
+
+##### Túneis locais
+
+```bash
 ssh -R 80:localhost:8080 nokey@localhost.run
 ```
 
-<img 
-  src="/seeker-tela.png" 
-  alt="Tela do Seeker rodando com ngrok" 
-  style={{ width: "100%", borderRadius: "12px", marginTop: "1rem" }} 
+
+
+<img
+src="/seeker-tela.png"
+alt="Tela do Seeker rodando com ngrok"
+style={{ width: "100%", borderRadius: "12px", marginTop: "1rem" }}
 />
 
 
 
 
 
- 
+
 <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
   <a href="https://www.linkedin.com/in/rodpeixoto/" target="_blank" rel="noopener noreferrer">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style={{ width: "32px" }} />
@@ -135,3 +162,5 @@ ssh -R 80:localhost:8080 nokey@localhost.run
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style={{ width: "32px" }} />
   </a>
 </div>
+
+
