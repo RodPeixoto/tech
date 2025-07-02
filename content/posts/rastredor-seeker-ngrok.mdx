@@ -1,0 +1,137 @@
+---
+title: Visualizadores de Texto no Linux (cat, more, less, head, tail)
+description: Comandos para visualizar, inspecionar e analisar arquivos de texto no terminal Linux.
+date: "2025-07-02"
+---
+
+### Instalação
+
+```
+git clone https://github.com/thewhiteh4t/seeker.git
+cd seeker/
+chmod +x install.sh
+./install.sh
+```
+
+### Instalação do  Ngrok
+
+```
+brew install ngrok/ngrok/ngrok
+
+ngrok http 8080
+```
+
+### Uso
+
+```
+python3 seeker.py -h
+```
+
+```
+usage: seeker.py [-h] [-k KML] [-p PORT] [-u] [-v] [-t TEMPLATE] [-d] [--telegram token:chatId] [--webhook WEBHOOK]
+```
+
+opções:
+
+```
+  -h, --help                            mostrar esta mensagem de ajuda e sair
+  -k KML, --kml KML                     nome do arquivo KML
+  -p PORT, --port PORT                  porta do servidor web [ Padrão : 8080 ]
+  -u, --update                          Verificar atualizações
+  -v, --version                         Mostrar versão
+  -t TEMPLATE, --template TEMPLATE      Selecionar automaticamente o modelo com o índice fornecido
+  -d, --debugHTTP                       Desativar redirecionamento automático de http --> https para fins de teste 
+                                        (funciona apenas para modelos com arquivo index_temp.html)
+  --telegram                            Enviar informações para um bot do Telegram, forneça o token e o chat a ser usado
+                                        formato = token:chatId separados por dois pontos
+  --webhook                             Enviar eventos para um endpoint webhook para processamento
+                                        Observação: o endpoint deve ser não autenticado e aceitar requisições POST
+```
+
+### Variáveis de Ambiente 
+
+
+Algumas das opções acima também podem ser ativadas via variáveis de ambiente, para facilitar a implantação. Outros parâmetros podem ser fornecidos via variáveis de ambiente para evitar o modo interativo.
+
+Variáveis:
+
+```
+  DEBUG_HTTP            Equivalente a -d, --debugHTTP
+  PORT                  Equivalente a -p, --port
+  TEMPLATE              Equivalente a -t, --template
+  TITLE                 Fornecer o título do grupo ou da página
+  REDIRECT              Fornecer a URL para redirecionar o usuário após a conclusão do trabalho
+  IMAGE                 Fornecer a imagem a ser usada, pode ser remota (http ou https) ou local
+                        Observação: Imagens remotas serão baixadas localmente durante a inicialização
+  DESC                  Fornecer a descrição do item (grupo ou página, dependendo do modelo)
+  SITENAME              Fornecer o nome do site
+  DISPLAY_URL           Fornecer a URL a ser exibida na página
+  MEM_NUM               Fornecer o número de membros do grupo (Telegram até o momento)
+  ONLINE_NUM            Fornecer o número de membros online do grupo (Telegram até o momento)
+  TELEGRAM              Fornecer o token e o chat do Telegram para enviar informações a um bot
+                        formato = token:chatId separados por dois pontos
+  WEBHOOK               Fornecer a URL do webhook para encaminhar os eventos
+                        Observação: o endpoint deve ser não autenticado e aceitar o método POST
+
+```
+
+### Exemplos de Uso #
+
+### Passo 1: No primeiro terminal
+
+```
+$ python3 seeker.py
+```
+
+### Passo 2: No segundo terminal, inicie um serviço de túnel como ngrok
+
+```
+$ ./ngrok http 8080
+```
+
+### Opções: #
+
+### Gerar arquivo KML para o Google Earth
+
+```
+$ python3 seeker.py -k <nome_do_arquivo>
+```
+
+### Usar Porta Personalizada
+
+```
+$ python3 seeker.py -p 1337
+$ ./ngrok http 1337
+```
+
+### Pré-selecionar um modelo específico
+
+```
+$ python3 seeker.py -t 1
+```
+
+### Túneis locais
+
+```
+ssh -R 80:localhost:8080 nokey@localhost.run
+```
+
+<img 
+  src="/seeker-tela.png" 
+  alt="Tela do Seeker rodando com ngrok" 
+  style={{ width: "100%", borderRadius: "12px", marginTop: "1rem" }} 
+/>
+
+
+
+
+
+ 
+<div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+  <a href="https://www.linkedin.com/in/rodpeixoto/" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style={{ width: "32px" }} />
+  </a>
+  <a href="https://github.com/RodPeixoto" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style={{ width: "32px" }} />
+  </a>
+</div>

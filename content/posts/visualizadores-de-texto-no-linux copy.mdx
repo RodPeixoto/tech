@@ -1,0 +1,184 @@
+---
+title: Visualizadores de Texto no Linux (cat, more, less, head, tail)
+description: Comandos para visualizar, inspecionar e analisar arquivos de texto no terminal Linux.
+date: "2025-07-02"
+---
+
+## 📂 Objetivo
+
+Comandos para visualizar, inspecionar e analisar arquivos de texto no terminal Linux. Essenciais para sysadmins ao lidar com logs, arquivos de configuração e scripts.
+
+---
+
+## 🐱 `cat` – Concatenate and Display
+
+### ▶️ Uso básico
+
+```bash
+cat arquivo.txt
+```
+
+### 🔧 Opções úteis
+
+```bash
+| Opção | Função                          |
+| ----- | ------------------------------- |
+| `-n`  | Numera todas as linhas          |
+| `-b`  | Numera apenas linhas não vazias |
+| `-s`  | Remove linhas em branco extras  |
+| `-T`  | Mostra TABs como `^I`           |
+```
+### 🧠 Exemplo prático
+
+```bash
+cat -n /etc/passwd
+```
+
+---
+
+## 📖 `more` – Leitor de página por página (modo leitura)
+
+### ▶️ Uso básico
+
+```bash
+more arquivo.txt
+```
+
+### 🔧 Comandos durante o uso
+
+```bash
+| Tecla      | Ação                |
+| ---------- | ------------------- |
+| `Enter`    | Avança uma linha    |
+| `Espaço`   | Avança uma página   |
+| `q`        | Sai                 |
+| `/palavra` | Busca por "palavra" |
+```
+### 🧠 Exemplo prático
+
+```bash
+more /var/log/syslog
+```
+
+---
+
+## 🕶 `less` – Leitura avançada (melhor que `more`)
+
+> 🔥 Recomendado para admins. Permite rolar para cima e baixo, buscar e navegar livremente.
+
+### ▶️ Uso básico
+
+```bash
+less arquivo.txt
+```
+
+### 🔧 Comandos úteis no modo leitura
+```bash
+| Tecla         | Função                |
+| ------------- | --------------------- |
+| `↑ / ↓`       | Sobe / desce linha    |
+| `PgUp / PgDn` | Página acima / abaixo |
+| `/palavra`    | Busca para frente     |
+| `?palavra`    | Busca para trás       |
+| `n`           | Próxima ocorrência    |
+| `N`           | Ocorrência anterior   |
+| `q`           | Sai                   |
+```
+### 🧠 Exemplo prático
+
+```bash
+less /var/log/auth.log
+```
+
+---
+
+## 🧢 `head` – Exibe o começo do arquivo
+
+### ▶️ Uso básico
+
+```bash
+head arquivo.txt
+```
+
+### 🔧 Opções úteis
+```bash
+| Opção  | Função                       |
+| ------ | ---------------------------- |
+| `-n N` | Mostra as primeiras N linhas |
+| `-c N` | Mostra os primeiros N bytes  |
+```
+### 🧠 Exemplo prático
+
+```bash
+head -n 20 /etc/passwd
+```
+
+---
+
+## 👢 `tail` – Exibe o fim do arquivo
+
+### ▶️ Uso básico
+
+```bash
+tail arquivo.txt
+```
+
+### 🔧 Opções úteis
+```bash
+| Opção  | Função                                                  |
+| ------ | ------------------------------------------------------- |
+| `-n N` | Últimas N linhas                                        |
+| `-f`   | Segue em tempo real novas linhas adicionadas            |
+| `-F`   | Igual ao `-f`, mas reabre o arquivo se ele for recriado |
+```
+### 🧠 Exemplo prático
+
+```bash
+tail -n 50 /var/log/syslog
+```
+
+### 📡 Monitoramento em tempo real
+
+```bash
+tail -f /var/log/auth.log
+```
+
+---
+
+## 📌 Dicas de uso prático
+
+### 🔁 Combinar com grep para buscas específicas:
+
+```bash
+cat /var/log/syslog | grep error
+```
+
+### 🔄 Atualização em tempo real (debug/logs):
+
+```bash
+tail -f /var/log/nginx/error.log
+```
+
+---
+
+## 🧠 Resumo rápido
+```bash
+| Comando | Função Principal               |
+| ------- | ------------------------------ |
+| `cat`   | Mostra conteúdo completo       |
+| `more`  | Mostra por páginas (limitado)  |
+| `less`  | Mostra por páginas (navegável) |
+| `head`  | Mostra início                  |
+| `tail`  | Mostra fim / segue ao vivo     |
+```
+---
+
+
+<div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+  <a href="https://www.linkedin.com/in/rodpeixoto/" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style={{ width: "32px" }} />
+  </a>
+  <a href="https://github.com/RodPeixoto" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style={{ width: "32px" }} />
+  </a>
+</div>

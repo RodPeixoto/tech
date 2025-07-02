@@ -1,0 +1,125 @@
+---
+title: Introdução Shell e Comandos Básicos 
+description: O Shell é a interface que você usa para interagir com o sistema operacional Linux.
+date: "2025-07-02"
+---
+## Introdução Shell e Comandos básicos
+---
+## 🔧 O que é o Shell?
+
+O Shell é a interface que você usa para interagir com o sistema operacional Linux. É como uma ponte entre você e o kernel (o “coração” do sistema). Você digita comandos e o shell executa as tarefas.
+
+Os shells mais comuns no Linux são:
+
+- **Bash** (o mais usado)
+    
+- Zsh
+    
+- Fish
+    
+- Dash
+
+## 📁 Estrutura Básica do Shell
+
+Quando você abre o terminal, verá algo assim: 
+```html
+usuario@maquina:~$
+```
+- `usuario`: nome do usuário logado
+    
+- `maquina`: nome do computador/servidor
+    
+- `~`: diretório atual (o `~` representa seu diretório home)
+    
+- `$`: símbolo do prompt (usuário comum). Se for `#`, é root.
+
+## 🧱 Comandos Básicos
+
+### 1. **Navegação entre diretórios**
+```html
+bash
+
+CopiarEditar
+
+pwd          # Mostra o diretório atual
+cd /caminho  # Muda para o diretório indicado
+cd ..        # Volta um diretório
+cd           # Volta para o diretório pessoal
+ls           # Lista arquivos e pastas do diretório atual
+ls -l        # Lista em formato longo (detalhado)
+ls -a        # Mostra arquivos ocultos
+```
+## 2.  Manipulação de arquivos e diretórios
+```html
+touch arquivo.txt               # Cria um arquivo vazio
+mkdir pasta                    # Cria uma pasta
+cp origem destino              # Copia arquivo ou pasta
+mv origem destino              # Move ou renomeia
+rm arquivo.txt                 # Remove arquivo
+rm -r pasta                    # Remove pasta e conteúdo
+```
+## 3. **Visualizar conteúdo**
+```html
+cat arquivo.txt      # Mostra o conteúdo do arquivo
+less arquivo.txt     # Mostra com paginação
+head arquivo.txt     # Mostra as 10 primeiras linhas
+tail arquivo.txt     # Mostra as 10 últimas linhas
+```
+## 4. **Gerenciar permissões**
+```html
+chmod 755 arquivo     # Altera permissões (rwxr-xr-x)
+chown user:grupo arq  # Muda dono e grupo
+```
+## 5. **Monitoramento**
+```html
+top                   # Mostra processos ativos em tempo real
+htop                  # Versão melhorada do top (precisa instalar)
+free -h               # Mostra uso da memória RAM
+df -h                 # Mostra uso do disco
+du -sh pasta/         # Mostra tamanho da pasta
+```
+## 6. **Rede**
+```html
+ip a                  # Mostra endereços IP
+ping google.com       # Testa conectividade
+netstat -tuln         # Mostra portas abertas (precisa do pacote `net-tools`)
+```
+
+## 🧠 Conceitos-Chave para um Admin
+```html
+| Conceito             | O que é                                         |
+| -------------------- | ----------------------------------------------- |
+| Root                 | Superusuário (admin) do sistema                 |
+| Permissões (rwx)     | Leitura, escrita e execução                     |
+| Diretórios especiais | `/etc`, `/var`, `/home`, `/tmp`, `/bin`, `/usr` |
+| Serviços e Daemons   | Programas que rodam em background               |
+| Logs                 | Arquivos de histórico em `/var/log`             |
+```
+
+## ⚙️ Dica Profissional
+
+Use o comando `man` para consultar o manual de qualquer comando:
+```html
+man ls   # Manual do comando ls
+```
+## 🧪 Prática Sugerida
+
+Tente criar essa estrutura com comandos no terminal:
+```html
+mkdir         -p ~/meu_teste/scripts
+cd            ~/meu_teste
+touch         lista.txt
+echo          "Linux é poderoso" > lista.txt
+cat           lista.txt
+cp            lista.txt scripts/
+ls            -l scripts/
+```
+
+<div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+  <a href="https://www.linkedin.com/in/rodpeixoto/" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style={{ width: "32px" }} />
+  </a>
+  <a href="https://github.com/RodPeixoto" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" style={{ width: "32px" }} />
+  </a>
+</div>
